@@ -1,11 +1,6 @@
-FROM node:latest AS node_base
-
-RUN echo "NODE Version:" && node --version
-RUN echo "NPM Version:" && npm --version
-
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
-COPY --from=node_base . .
+RUN apt-get update -y && apt-get install -y nodejs npm
 
 WORKDIR /src
 COPY ./ ./
